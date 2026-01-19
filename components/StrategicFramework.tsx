@@ -12,9 +12,9 @@ const pillarsData: PillarData[] = [
     visualType: 'image',
     details: [
       { label: "VO2 Max Optimization", text: "Demonstrated improvements in oxygen transport capacity and lactate threshold through controlled Hypoxic conditioning.", statValue: "10", statUnit: "%", statColor: "#D4AF37" },
-      { label: "Cellular Power", text: "Peer-reviewed evidence supports the stimulation of natural EPO production and enhancement of mitochondrial density for sustained endurance.", statValue: "EPO", statUnit: "+", statColor: "#3881FC" },
-      { label: "Rapid Acclimatization", text: "Optimized pre-acclimatization protocols to enhance physiological adaptation efficiency for global competitions and high-altitude deployment.", statValue: "50", statUnit: "%", statColor: "#D4AF37" },
-      { label: "Military Readiness", text: "Specialized thermal adaptation and cognitive resilience frameworks designed for elite tactical performance in comparable operational environments.", statValue: "T1", statUnit: "Tactical", statColor: "#3881FC" }
+      { label: "Cellular Power", text: "Peer-reviewed evidence supports the stimulation of natural EPO production and enhancement of mitochondrial density for sustained endurance.", statValue: "1", statUnit: "TIER", statColor: "#3881FC" },
+      { label: "Rapid Acclimatization", text: "Optimized pre-acclimatization protocols to enhance physiological adaptation efficiency for global competitions and high-altitude deployment.", statValue: "ISO,", statUnit: "CE", statColor: "#D4AF37" },
+      { label: "Military Readiness", text: "Specialized thermal adaptation and cognitive resilience frameworks designed for elite tactical performance in comparable operational environments.", statValue: "2030", statUnit: "Vision", statColor: "#3881FC" }
     ]
   },
   {
