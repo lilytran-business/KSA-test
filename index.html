@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Altipeak™ International | KSA Strategic Vision 2030</title>
+    
+    <!-- External Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy-deep: #0A192F;
+            --navy-light: #112240;
+            --blue-accent: #3881FC;
+            --gold-accent: #D4AF37;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--navy-deep);
+            color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .gold-gradient { background: linear-gradient(135deg, #D4AF37 0%, #F5E050 50%, #D4AF37 100%); }
+        .gold-text {
+            background: linear-gradient(135deg, #D4AF37 0%, #F5E050 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slow-rotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(2deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        .animate-slow-rotate { animation: slow-rotate 8s infinite ease-in-out; }
+
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .animate-shimmer { position: relative; overflow: hidden; }
+        .animate-shimmer::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2s infinite linear;
+        }
+
+        @keyframes scroll-fast {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-fast {
+          animation: scroll-fast 40s linear infinite;
+        }
+
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-float-slow {
+          animation: float-slow 4s ease-in-out infinite;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--navy-deep); }
+        ::-webkit-scrollbar-thumb { background: #233554; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--blue-accent); }
+        
+        .world-map-bg {
+          background-image: url('https://www.transparenttextures.com/patterns/world-map.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
+
+        /* Timeline Phase Reveal Animations */
+        .visible .slide-in-left { animation: slideInLeft 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .visible .slide-in-right { animation: slideInRight 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .visible .slide-in-bottom { animation: slideInBottom 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        
+        @keyframes slideInLeft { 
+            from { opacity: 0; transform: translateX(-60px); } 
+            to { opacity: 1; transform: translateX(0); } 
+        }
+        @keyframes slideInRight { 
+            from { opacity: 0; transform: translateX(60px); } 
+            to { opacity: 1; transform: translateX(0); } 
+        }
+        @keyframes slideInBottom { 
+            from { opacity: 0; transform: translateY(60px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+    </style>
+
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0",
+    "htm": "https://esm.sh/htm@3.1.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="module">
+        import React, { useState, useEffect, useRef } from 'react';
+        import ReactDOM from 'react-dom/client';
+        import * as Lucide from 'lucide-react';
+        import htm from 'htm';
+
+        const html = htm.bind(React.createElement);
+
+        // --- DATA DEFS ---
+        const PILLARS_DATA = [
+            { id: 'pillar1', title: "Elite Performance", subtitle: "Military & Olympic Readiness", icon: 'Trophy', visualUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200", details: [{ label: "VO2 Max Optimization", text: "Improve oxygen transport capacity and lactate threshold by up to 10% via Hypoxic conditioning.", statValue: "10", statUnit: "%", statColor: "#D4AF37" }, { label: "Cellular Power", text: "Naturally stimulate EPO production and enhance mitochondrial density for superior endurance.", statValue: "EPO", statUnit: "+", statColor: "#3881FC" }, { label: "Rapid Acclimatization", text: "Cut high-altitude preparation time by 50%. Pre-acclimatize at base for global competition.", statValue: "50", statUnit: "%", statColor: "#D4AF37" }, { label: "Military Readiness", text: "Heat adaptation and cognitive resilience training for specialized military operations.", statValue: "T1", statUnit: "Tactical", statColor: "#3881FC" }] },
+            { id: 'pillar2', title: "Clinical Rehab", subtitle: "Altitude Therapy & Recovery", icon: 'HeartPulse', visualUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200", details: [{ label: "Metabolic Breakthrough", text: "Effective weight loss via leptin hormone modulation and significant metabolic rate increase.", statValue: "12", statUnit: "kg/mo", statColor: "#D4AF37" }, { label: "Spinal Cord Rehab", text: "Intermittent Hypoxia protocols mirroring weeks of traditional therapy in just days.", statValue: "3x", statUnit: "Recovery", statColor: "#3881FC" }, { label: "Chronic Disease Mgmt", text: "Innovative support for Type-2 Diabetes glucose levels and Asthma recovery protocols.", statValue: "Live", statUnit: "Monitoring", statColor: "#D4AF37" }, { label: "Modular Integration", text: "Modular, medically-certified systems for leading Saudi hospitals like Alhabib and Fakeeh.", statValue: "100", statUnit: "%", statColor: "#3881FC" }] },
+            { id: 'pillar3', title: "Giga-Urban Assets", subtitle: "NEOM & Urban Infrastructure", icon: 'Landmark', visualUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200", details: [{ label: "Market Advantage", text: "First-mover advantage in specialized altitude franchising across the Kingdom of Saudi Arabia.", statValue: "Blue", statUnit: "Ocean", statColor: "#D4AF37" }, { label: "Proven Success", text: "Altibox™ and AltiHITT™ turn-key solutions with documented 94% average occupancy rates.", statValue: "94", statUnit: "%", statColor: "#3881FC" }, { label: "Giga-Project Scale", text: "Bespoke full-climate simulation up to 10km altitude for iconic futuristic urban centers.", statValue: "10", statUnit: "km", statColor: "#D4AF37" }, { label: "Sullair Support", text: "Strategic maintenance partnership with local engineers for 24/7 technical uptime.", statValue: "24/7", statUnit: "Uptime", statColor: "#3881FC" }] }
+        ];
+
+        const TRAINING_CONCEPTS = [
+            { name: "Altibox™", tagline: "High-Intensity Boxing", desc: "Boxing + strength conditioning at altitude (up to 3,000m) or heat (30–40°C).", icon: 'Dumbbell', badge: "NEW: Coming 2025", img: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed" },
+            { name: "AltiHITT™", tagline: "Superior Conditioning", desc: "Advanced interval treadmill + strength training. The apex alternative to traditional studio models.", icon: 'Zap', img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48" },
+            { name: "AltiRow™", tagline: "Elite Rowing Eco", desc: "Rowing-based conditioning for universities, military, and elite sport units.", icon: 'Waves', img: "https://images.unsplash.com/photo-1544606111-99a3809029a1" },
+            { name: "BIKE LAB™", tagline: "Performance Cycling", desc: "Lab-grade cycling environments simulating altitude + extreme heat variables.", icon: 'Bike', img: "https://images.unsplash.com/photo-1517649763962-0c623066013b" },
+            { name: "RUN LAB™", tagline: "Gait & Stress Analysis", desc: "Performance running analysis in environmental extremes (Altitude/Humidity).", icon: 'Activity', img: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5" }
+        ];
+
+        const ROADMAP_DATA = [
+          {
+            phase: "Phase 1",
+            title: "Pilot Installation",
+            icon: 'Flag',
+            color: "#D4AF37",
+            desc: "Deploy Pilot Installations for the Government to validate tactical performance outcomes.",
+            items: ["Site Analysis", "Modular Tech Assembly", "Baseline Physiological Testing"],
+            animation: "slide-in-left"
+          },
+          {
+            phase: "Phase 2",
+            title: "Regional Demo Hubs",
+            icon: 'Activity',
+            color: "#3881FC",
+            desc: "Establish Demonstration Centres in Riyadh and Jeddah for stakeholder engagement.",
+            items: ["Stakeholder Showcases", "Local Staff Training", "Protocol Validation"],
+            animation: "slide-in-right"
+          },
+          {
+            phase: "Phase 3",
+            title: "National Expansion",
+            icon: 'Rocket',
+            color: "#D4AF37",
+            desc: "Long-term strategic partnership and nationwide franchise expansion across Giga-Projects.",
+            items: ["Military Integration", "NEOM Hub Launch", "Academy Certification"],
+            animation: "slide-in-bottom"
+          }
+        ];
+
+        // --- SUB-COMPONENTS ---
+
+        const Sidebar = ({ activeSection }) => {
+            const [isMobileOpen, setIsMobileOpen] = useState(false);
+            const navItems = [
+                { id: 'home', label: 'Home' },
+                { id: 'capability', label: 'Who we are' },
+                { id: 'ecosystem', label: 'Altipeak ecosystem' },
+                { id: 'vision', label: 'Strategic Vision' },
+                { id: 'scaling', label: 'Market Deployment' },
+                { id: 'credibility', label: 'Our Global Proof' },
+                { id: 'roadmap', label: 'Roadmap' },
+            ];
+
+            const scrollTo = (id) => {
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                setIsMobileOpen(false);
+            };
+
+            return html`
+                <nav className="hidden lg:flex fixed left-0 top-0 h-screen w-64 bg-[#0A192F]/80 backdrop-blur-2xl border-r border-white/5 flex-col z-50">
+                    <div className="p-10">
+                        <h1 className="text-2xl font-black tracking-tighter gold-text leading-none uppercase">ALTIPEAK™</h1>
+                        <p className="text-[10px] text-[#3881FC] font-black mt-2 uppercase tracking-[0.3em] opacity-80">International</p>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-center px-4 space-y-2">
+                        ${navItems.map(item => html`
+                            <button key=${item.id} onClick=${() => scrollTo(item.id)} className=${`flex items-center justify-between py-4 px-6 rounded-2xl transition-all duration-500 group relative overflow-hidden ${activeSection === item.id ? 'text-[#D4AF37] translate-x-2' : 'text-slate-400 hover:text-white'}`}>
+                                ${activeSection === item.id && html`<div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 gold-gradient rounded-full" />`}
+                                <span className="font-black text-xs uppercase tracking-[0.2em] transition-all">${item.label}</span>
+                            </button>
+                        `)}
+                    </div>
+                    <div className="p-8 border-t border-white/5">
+                        <a href="https://altipeakfranchising.com/" target="_blank" className="flex items-center justify-between p-5 rounded-3xl bg-white/5 hover:bg-[#3881FC]/20 transition-all group border border-transparent hover:border-[#3881FC]/30 shadow-xl">
+                            <div className="flex flex-col">
+                                <span className="text-[10px] text-[#D4AF37] font-black uppercase tracking-tight mb-1">Return to</span>
+                                <span className="text-xs font-black uppercase tracking-widest text-white">Main Portal</span>
+                            </div>
+                            <${Lucide.ExternalLink} size=${16} className="text-[#3881FC] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </a>
+                    </div>
+                </nav>
+
+                <div className="lg:hidden fixed top-6 right-6 z-[100]">
+                    <button onClick=${() => setIsMobileOpen(!isMobileOpen)} className="bg-[#D4AF37] text-[#0A192F] p-4 rounded-full shadow-2xl active:scale-90 transition-all">
+                        ${isMobileOpen ? html`<${Lucide.X} size=${24} />` : html`<${Lucide.Menu} size=${24} />`}
+                    </button>
+                </div>
+                ${isMobileOpen && html`
+                    <div className="fixed inset-0 z-[90] bg-[#0A192F]/98 backdrop-blur-2xl flex flex-col items-center justify-center p-8 space-y-8 animate-in fade-in duration-300">
+                        ${navItems.map(item => html`<button key=${item.id} onClick=${() => scrollTo(item.id)} className=${`text-2xl font-black uppercase tracking-widest ${activeSection === item.id ? 'gold-text' : 'text-white'}`}>${item.label}</button>`)}
+                    </div>
+                `}
+            `;
+        };
+
+        const Hero = () => html`
+            <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0A192F]">
+                <div className="absolute inset-0 z-0">
+                    <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20">
+                        <source src="https://player.vimeo.com/external/494252666.sd.mp4?s=bc463e230554f676993ef07a16062f8b50242279&profile_id=165" type="video/mp4" />
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F] via-transparent to-[#0A192F]" />
+                </div>
+                <div className="container mx-auto px-6 md:px-12 relative z-10 text-left">
+                    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#3881FC]/10 border border-[#3881FC]/30 text-[#3881FC] text-[10px] font-black tracking-[0.4em] uppercase mb-10">
+                        <${Lucide.PlayCircle} size=${14} className="animate-pulse" /> KSA Strategic Blueprint v5.0
+                    </div>
+                    <h1 className="text-4xl md:text-7xl xl:text-8xl font-light text-white uppercase leading-[0.9] tracking-tighter mb-8">
+                        National Human <br/> <span className="font-black gold-text italic">Performance Ecosystem</span>
+                    </h1>
+                    <p className="text-xl md:text-2xl text-slate-400 font-medium tracking-tight mb-12 max-w-2xl">Leading the World in Altitude, Climate, and Performance Engineering.</p>
+                    <div className="flex gap-6">
+                        <a href="#vision" className="gold-gradient text-slate-950 px-12 py-6 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all">Strategic Framework</a>
+                    </div>
+                </div>
+            </section>
+        `;
+
+        const WhoWeAre = ({ onOpenPortfolio }) => html`
+            <section id="capability" className="section-reveal relative py-32 world-map-bg bg-opacity-5">
+                <div className="container mx-auto px-6 md:px-12 text-center lg:text-left">
+                    <h2 className="text-4xl md:text-6xl font-black mb-10 text-white leading-tight uppercase">15+ Years of <br/><span className="gold-text">Engineering Mastery</span></h2>
+                    <div className="grid md:grid-cols-4 gap-8 mb-16">
+                        ${['ShieldCheck', 'Award', 'Globe2', 'Cog'].map(i => html`
+                            <div key=${i} className="glass-card p-10 rounded-[2.5rem] flex flex-col items-center">
+                                <${Lucide[i]} size={64} className="text-[#D4AF37] mb-6" />
+                                <h4 className="text-xl font-black text-white uppercase">Certified</h4>
+                            </div>
+                        `)}
+                    </div>
+                    <button onClick=${onOpenPortfolio} className="bg-[#3881FC] text-white px-10 py-5 rounded-full font-black uppercase">View Portfolio</button>
+                </div>
+            </section>
+        `;
+
+        const StrategicFramework = ({ onSelectPillar }) => html`
+            <section id="vision" className="section-reveal py-32 px-6">
+                <div className="container mx-auto grid lg:grid-cols-3 gap-10">
+                    ${PILLARS_DATA.map(p => html`
+                        <div key=${p.id} onClick=${() => onSelectPillar(p)} className="glass-card h-[600px] rounded-[3.5rem] p-12 flex flex-col justify-between cursor-pointer group">
+                            <div>
+                                <${Lucide[p.icon]} size={48} className="text-[#D4AF37] mb-8" />
+                                <h4 className="text-3xl font-black text-white uppercase">${p.title}</h4>
+                                <p className="text-[#3881FC] font-bold uppercase mt-2">${p.subtitle}</p>
+                            </div>
+                            <span className="gold-text font-black uppercase">Case Study →</span>
+                        </div>
+                    `)}
+                </div>
+            </section>
+        `;
+
+        const Timeline = () => {
+            const [prog, setProg] = useState(0);
+            const sectionRef = useRef(null);
+
+            useEffect(() => {
+                const hScroll = () => {
+                    if (!sectionRef.current) return;
+                    const r = sectionRef.current.getBoundingClientRect();
+                    const p = Math.max(0, Math.min(100, ((window.innerHeight - r.top) / (r.height + window.innerHeight)) * 120));
+                    setProg(p);
+                };
+                window.addEventListener('scroll', hScroll);
+                return () => window.removeEventListener('scroll', hScroll);
+            }, []);
+
+            return html`
+                <section id="roadmap" ref=${sectionRef} className="relative py-40 px-6 overflow-hidden bg-[#0A192F]">
+                    <div className="container mx-auto text-center mb-32 relative z-10">
+                        <h3 className="text-[#3881FC] font-black uppercase tracking-[0.6em] text-[10px] mb-6">Future Trajectory</h3>
+                        <h2 className="text-5xl md:text-8xl font-black mb-8 italic tracking-tighter uppercase text-white">Strategic <span className="gold-text">Roadmap</span></h2>
+                        <div className="w-full max-w-md h-1 bg-white/5 mx-auto rounded-full overflow-hidden relative mt-8">
+                            <div className="h-full gold-gradient transition-all duration-700" style=${{ width: `${Math.min(100, prog)}%` }} />
+                        </div>
+                    </div>
+
+                    <div className="container mx-auto max-w-6xl relative">
+                        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-white/5 -translate-x-1/2 hidden md:block rounded-full">
+                            <div className="absolute top-0 left-0 w-full gold-gradient shadow-[0_0_20px_#D4AF37]" style=${{ height: `${prog}%` }} />
+                        </div>
+
+                        <div className="space-y-32 relative z-10">
+                            ${ROADMAP_DATA.map((step, idx) => html`
+                                <div key=${idx} className=${`flex flex-col md:flex-row items-center gap-12 group ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                                    <div className=${`flex-1 w-full opacity-0 ${step.animation}`}>
+                                        <div className="glass-card p-10 md:p-14 rounded-[3rem] hover:border-[#D4AF37]/40 transition-all duration-700">
+                                            <div className="text-[#D4AF37] text-[10px] font-black uppercase mb-6">${step.phase}</div>
+                                            <h4 className="text-3xl font-black text-white uppercase mb-4">${step.title}</h4>
+                                            <p className="text-slate-400 leading-relaxed">${step.desc}</p>
+                                        </div>
+                                    </div>
+                                    <div className="relative flex items-center justify-center shrink-0">
+                                        <div className="w-20 h-20 rounded-[2rem] bg-slate-950 border-4 border-[#D4AF37] z-20 flex items-center justify-center text-[#D4AF37]">
+                                            <${Lucide[step.icon]} size={32} />
+                                        </div>
+                                    </div>
+                                    <div className="flex-1 hidden md:block" />
+                                </div>
+                            `)}
+                        </div>
+                    </div>
+                </section>
+            `;
+        };
+
+        const App = () => {
+            const [active, setActive] = useState('home');
+            const [selPillar, setSelPillar] = useState(null);
+
+            useEffect(() => {
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            setActive(e.target.id);
+                            e.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.15 });
+                document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
+                return () => obs.disconnect();
+            }, []);
+
+            return html`
+                <div className="min-h-screen bg-[#0A192F]">
+                    <${Sidebar} activeSection=${active} />
+                    <main className="flex-1 lg:ml-64">
+                        <${Hero} />
+                        <${WhoWeAre} onOpenPortfolio=${() => {}} />
+                        <${StrategicFramework} onSelectPillar=${setSelPillar} />
+                        <${Timeline} />
+                        <footer className="py-20 text-center text-slate-500 uppercase tracking-widest text-[10px] border-t border-white/5">
+                            © 2024 Altipeak™ International | Strategic Saudi Vision 2030 Partner
+                        </footer>
+                    </main>
+                </div>
+            `;
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
