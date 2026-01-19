@@ -62,7 +62,7 @@ const Hero: React.FC<{ id: string }> = ({ id }) => {
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#3881FC]/10 border border-[#3881FC]/30 text-[#3881FC] text-[10px] font-black tracking-[0.4em] uppercase mb-10 backdrop-blur-md animate-in fade-in slide-in-from-left-4 duration-700">
             <PlayCircle size={14} className="animate-pulse" />
-            KSA Strategic Blueprint v5.0
+            KSA Strategic Blueprint
           </div>
 
           <h1 className="text-4xl md:text-7xl xl:text-8xl font-light text-white uppercase leading-[0.9] tracking-tighter mb-8 animate-in fade-in slide-in-from-left-10 duration-1000">
@@ -71,15 +71,15 @@ const Hero: React.FC<{ id: string }> = ({ id }) => {
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-400 font-medium tracking-tight mb-12 max-w-2xl animate-in fade-in slide-in-from-left-12 duration-1000 delay-200">
-            Leading the World in Altitude, Climate, and Performance Engineering.
+            A modular, pilot-ready human capability framework aligned with Saudi Vision 2030.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-6 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-500">
             <a href="#strategic-framework" className="w-full sm:w-auto text-center gold-gradient text-slate-950 px-12 py-6 rounded-full font-black uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] transition-all group">
-              Strategic Framework
+              View Pilot Use Cases
             </a>
             <a href="#contact" className="w-full sm:w-auto text-center border-2 border-white/10 bg-white/5 backdrop-blur-md hover:border-[#3881FC] hover:bg-[#3881FC]/10 px-12 py-6 rounded-full font-black uppercase tracking-widest text-white transition-all">
-              Engagement Portal
+              Request Government Briefing
             </a>
           </div>
         </div>
