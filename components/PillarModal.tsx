@@ -157,7 +157,7 @@ const PillarModal: React.FC<PillarModalProps> = ({ pillar, onClose }) => {
               <div className="grid lg:grid-cols-12 gap-10">
                 {/* Case Study Video Area */}
                 <div className="lg:col-span-7 aspect-video rounded-[3rem] bg-slate-900 overflow-hidden relative group cursor-pointer border border-white/5">
-                  <img src={pillar.visualUrl} className="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000" />
+                  < video src="/videos/case-study.mp4" className="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white shadow-2xl group-hover:bg-[#D4AF37] group-hover:text-slate-950 transition-all">
                       <PlayCircle size={48} className="animate-pulse" />
