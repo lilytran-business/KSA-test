@@ -5,16 +5,16 @@ import { PillarData } from '../types';
 const pillarsData: PillarData[] = [
   {
     id: 'pillar1',
-    title: "Elite Performance (Olympic & Military Readiness)",
-    subtitle: "Altitude & environmental conditioning frameworks",
+    title: "Elite Performance",
+    subtitle: "Olympic & Military Readiness",
     icon: Trophy,
     visualUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200",
     visualType: 'image',
     details: [
-      { label: "VO2 Max Optimization", text: "Improve oxygen transport capacity and lactate threshold by up to 10% via Hypoxic conditioning.", statValue: "10", statUnit: "%", statColor: "#D4AF37" },
-      { label: "Cellular Power", text: "Naturally stimulate EPO production and enhance mitochondrial density for superior endurance.", statValue: "EPO", statUnit: "+", statColor: "#3881FC" },
-      { label: "Rapid Acclimatization", text: "Cut high-altitude preparation time by 50%. Pre-acclimatize at base for global competition.", statValue: "50", statUnit: "%", statColor: "#D4AF37" },
-      { label: "Military Readiness", text: "Heat adaptation and cognitive resilience training for specialized military operations.", statValue: "T1", statUnit: "Tactical", statColor: "#3881FC" }
+      { label: "VO2 Max Optimization", text: "Demonstrated improvements in oxygen transport capacity and lactate threshold through controlled Hypoxic conditioning.", statValue: "10", statUnit: "%", statColor: "#D4AF37" },
+      { label: "Cellular Power", text: "Peer-reviewed evidence supports the stimulation of natural EPO production and enhancement of mitochondrial density for sustained endurance.", statValue: "EPO", statUnit: "+", statColor: "#3881FC" },
+      { label: "Rapid Acclimatization", text: "Optimized pre-acclimatization protocols to enhance physiological adaptation efficiency for global competitions and high-altitude deployment.", statValue: "50", statUnit: "%", statColor: "#D4AF37" },
+      { label: "Military Readiness", text: "Specialized thermal adaptation and cognitive resilience frameworks designed for elite tactical performance in comparable operational environments.", statValue: "T1", statUnit: "Tactical", statColor: "#3881FC" }
     ]
   },
   {
