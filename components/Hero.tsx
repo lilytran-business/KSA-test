@@ -91,7 +91,7 @@ const Hero: React.FC<{ id: string }> = ({ id }) => {
           <div className="relative mb-12 animate-in zoom-in duration-1000 delay-300">
             <div className="absolute inset-0 bg-[#D4AF37] blur-[40px] opacity-20 animate-pulse"></div>
             <img 
-              src="https://res.cloudinary.com/dpweu2ene/image/upload/v1768812829/Saudi_Vision_2030_logo-2_qwhsef.png" 
+              src="https://res.cloudinary.com/dpweu2ene/image/upload/v1768813034/Vision-2030-logo_1_134740_cmwlbz.png" 
               alt="Vision 2030" 
               className="h-32 md:h-44 invert drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] relative z-10 animate-slow-rotate"
             />
