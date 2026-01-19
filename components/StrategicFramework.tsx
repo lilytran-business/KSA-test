@@ -5,8 +5,8 @@ import { PillarData } from '../types';
 const pillarsData: PillarData[] = [
   {
     id: 'pillar1',
-    title: "Elite Performance",
-    subtitle: "Military & Olympic Readiness",
+    title: "Elite Performance (Olympic & Military Readiness)",
+    subtitle: "Altitude & environmental conditioning frameworks",
     icon: Trophy,
     visualUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200",
     visualType: 'image',
@@ -19,8 +19,8 @@ const pillarsData: PillarData[] = [
   },
   {
     id: 'pillar2',
-    title: "Clinical Rehab",
-    subtitle: "Altitude Therapy & Recovery",
+    title: "Clinical & Metabolic Rehabilitation",
+    subtitle: "Clinical hypoxia therapy & recovery systems",
     icon: HeartPulse,
     visualUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200",
     visualType: 'image',
@@ -33,8 +33,8 @@ const pillarsData: PillarData[] = [
   },
   {
     id: 'pillar3',
-    title: "Giga-Urban Assets",
-    subtitle: "NEOM & Urban Infrastructure",
+    title: "Urban & Mega-Project Human Resilience",
+    subtitle: "NEOM & large-scale urban infrastructure",
     icon: Landmark,
     visualUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
     visualType: 'image',
